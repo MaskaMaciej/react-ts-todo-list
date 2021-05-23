@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsxImportSource theme-ui */
 
-function App() {
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Flex, Text } from "theme-ui";
+
+import "./App.css";
+import { todoAppContainer } from "./styles/styles";
+import { HomeScreen } from "./pages/HomeScreen/HomeScreen";
+import { TodosScreen } from "./pages/TodosScreen/TodosScreen";
+
+export const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex sx={todoAppContainer}>
+      <Router>
+        <Switch>
+          <Route path="/todos" exact component={TodosScreen} />
+          <Route path="/" exact component={HomeScreen} />
+        </Switch>
+      </Router>
+    </Flex>
   );
-}
-
-export default App;
+};
